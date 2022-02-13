@@ -40,7 +40,7 @@ The order of the operations is specific to this project and different implementa
 
 ## GPU-CPU optimization
 
-The genetic algorithm has been implemented a second time to make maximum use of the optimizations of the CPU and the cuda cores integrated into the GPU, in order to decrease the calculation time.
+The genetic algorithm has been implemented a second time to make maximum use of the optimizations of the CPU and the CUDA cores integrated into the GPU, in order to decrease the calculation time.
 The [Numba library](https://numba.pydata.org/numba-doc/latest/index.html) is used for better optimization of the calculation time of the algorithms with the use of the GPU and the CPU.
 The following diagram shows what were the main optimizations:
 
@@ -49,7 +49,7 @@ The following diagram shows what were the main optimizations:
 
 _Distribution of tasks between GPU and CPU._
 
-The scoring and mutation methods are executed on cuda cores, since they are composed of calculations compatible with Nvidia GPUs.
+The scoring and mutation methods are executed on CUDA cores, since they are composed of calculations compatible with Nvidia GPUs.
 The methods of selecting the best individuals, crossover and generating new individuals work in parallel on a CPU, with the use of all the available cores.
 
 ## Tree of the project
@@ -155,7 +155,7 @@ python genetic_algorithm.py
     --population_rate_to_keep 0.50 # Percentage of population who is kept to add transformations (crossover or mutation)
     --mutation_rate 0.1 # Percentage of chance that a gene mutates
     --number_step_to_actualize_view 100 # Number of iterations before refreshing the screen
-    --threads_per_block 1024 # Number of cuda threads per block
+    --threads_per_block 1024 # Number of CUDA threads per block
 ```
 
 ## Results
@@ -172,7 +172,7 @@ python genetic_algorithm.py
     --population_rate_to_keep 0.50 # Percentage of population who is kept to add transformations (crossover or mutation)
     --mutation_rate 0.1 # Percentage of chance that a gene mutates
     --number_step_to_actualize_view 100 # Number of iterations before refreshing the screen
-    --threads_per_block 1024 # Number of cuda threads per block
+    --threads_per_block 1024 # Number of CUDA threads per block
 ```
 
 <img src="">
@@ -189,7 +189,7 @@ python genetic_algorithm.py
     --population_rate_to_keep 0.50 # Percentage of population who is kept to add transformations (crossover or mutation)
     --mutation_rate 0.1 # Percentage of chance that a gene mutates
     --number_step_to_actualize_view 100 # Number of iterations before refreshing the screen
-    --threads_per_block 1024 # Number of cuda threads per block
+    --threads_per_block 1024 # Number of CUDA threads per block
 ```
 
 <img src="">

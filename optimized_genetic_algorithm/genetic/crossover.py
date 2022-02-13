@@ -3,6 +3,7 @@ from numba import jit, prange
 import random
 
 
+
 @jit(nopython=True, parallel=True, fastmath=True)
 def crossover(population, size_individual):
     for i in prange(int(len(population) / 2)):

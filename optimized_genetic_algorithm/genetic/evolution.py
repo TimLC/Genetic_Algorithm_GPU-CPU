@@ -1,3 +1,4 @@
+import numpy as np
 from numba import cuda
 
 from optimized_genetic_algorithm.genetic.crossover import crossover
@@ -8,7 +9,7 @@ from optimized_genetic_algorithm.genetic.selection import selector
 from optimized_genetic_algorithm.utils.utils import shuffle_list
 
 
-def evolution(population, dataset_score_cuda, population_scores, size_individual, mutation_rate, spliter, number_population_to_keep, result, iteration, rng_states, threads_per_block, blocks_per_grid):
+def evolution(population, dataset_score_cuda, population_scores, size_individual, mutation_rate, spliter, number_population_to_keep, result, iteration, threads_per_block, blocks_per_grid):
     population_cuda = cuda.to_device(population)
     population_scores_cuda = cuda.to_device(population_scores)
 
@@ -21,9 +22,13 @@ def evolution(population, dataset_score_cuda, population_scores, size_individual
 
     crossover(population[1:(spliter + 1)], size_individual)
 
-    population_cuda = cuda.to_device(population[(spliter + 1):(number_population_to_keep + 1)])
-    mutate[blocks_per_grid, threads_per_block](population_cuda, size_individual, mutation_rate, rng_states)
-    population[(spliter + 1):(number_population_to_keep + 1)] = population_cuda.copy_to_host()
+    random_values = np.random.rand((number_population_to_keep - spliter), 2)
+    random_values_cuda = cuda.to_device(random_values)
+
+    population_cuda_mutation = cuda.to_device(population[(spliter + 1):(number_population_to_keep + 1)])
+    mutate[blocks_per_grid, threads_per_block](population_cuda_mutation, random_values_cuda, size_individual, mutation_rate)
+
+    population[(spliter + 1):(number_population_to_keep + 1)] = population_cuda_mutation.copy_to_host()
 
     regenerate_population(population[(number_population_to_keep + 1):])
 

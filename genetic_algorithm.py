@@ -41,7 +41,7 @@ def optimized():
 def comparison_size_population():
     parser = argparse.ArgumentParser()
     parser.add_argument('--dataset_name', type=str)
-    parser.add_argument('--size_population', type=list, default=[1024, 2048, 4096, 8192])
+    parser.add_argument('--size_population', type=int, nargs='*', default=[1024, 2048, 4096, 8192])
     parser.add_argument('--number_generation', type=int, default=1000)
     parser.add_argument('--population_rate_to_keep', type=float, default=0.50, choices=[i / 100 for i in range(0, 100)])
     parser.add_argument('--mutation_rate', type=float, default=0.10, choices=[i / 100 for i in range(0, 100)])
@@ -56,7 +56,7 @@ def comparison_number_generation():
     parser = argparse.ArgumentParser()
     parser.add_argument('--dataset_name', type=str)
     parser.add_argument('--size_population', type=int, default=8192)
-    parser.add_argument('--number_generation', type=list, default=[10, 100, 1000,10000])
+    parser.add_argument('--number_generation', type=int, nargs='*', default=[10, 100, 1000,10000])
     parser.add_argument('--population_rate_to_keep', type=float, default=0.50, choices=[i / 100 for i in range(0, 100)])
     parser.add_argument('--mutation_rate', type=float, default=0.10, choices=[i / 100 for i in range(0, 100)])
     parser.add_argument('--number_step_to_actualize_view', type=str, default=100)

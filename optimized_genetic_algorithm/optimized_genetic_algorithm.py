@@ -1,4 +1,5 @@
 import math
+import os
 from time import time, time_ns
 
 import numpy as np
@@ -29,14 +30,12 @@ def run_optimized_genetic_algorithm(dataset_name='dantzig42', size_population=81
     dataset_score_cuda = cuda.to_device(dataset_score)
 
     blocks_per_grid = math.ceil(size_population / threads_per_block)
-    n_threads = threads_per_block
-    rng_states = random.create_xoroshiro128p_states(n_threads, seed=time_ns())
 
     for iteration in range(number_generation):
         time_iteration_start = time()
         new_best_individual = evolution(population, dataset_score_cuda, population_scores, size_individual,
                                         mutation_rate, spliter_index, number_population_to_keep, result, iteration,
-                                        rng_states, threads_per_block, blocks_per_grid)
+                                        threads_per_block, blocks_per_grid)
         duration += time() - time_iteration_start
         display(dataset, result, iteration, number_generation, new_best_individual, number_step_to_actualize_view)
 
