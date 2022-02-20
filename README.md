@@ -167,7 +167,7 @@ The two implementations (classic and optimized) can be compared according to 2 c
 python genetic_algorithm.py
     --action comparison_size_population # (Mandatory)
     --dataset_name dantzig42 # (Mandatory) Dataset name
-    --size_population [1024, 2048, 4096, 8192] # Number of individuals in the population
+    --list_size_population [1024, 2048, 4096, 8192] # Number of individuals in the population
     --number_generation 10000 # Number of iterations
     --population_rate_to_keep 0.50 # Percentage of population who is kept to add transformations (crossover or mutation)
     --mutation_rate 0.1 # Percentage of chance that a gene mutates
@@ -185,7 +185,7 @@ python genetic_algorithm.py
     --action comparison_number_generation # (Mandatory)
     --dataset_name dantzig42 # (Mandatory) Dataset name
     --size_population 8192 # Number of individuals in the population
-    --number_generation [100, 1000, 10000] # Number of iterations
+    --list_number_generation [100, 1000, 10000] # Number of iterations
     --population_rate_to_keep 0.50 # Percentage of population who is kept to add transformations (crossover or mutation)
     --mutation_rate 0.1 # Percentage of chance that a gene mutates
     --number_step_to_actualize_view 100 # Number of iterations before refreshing the screen
