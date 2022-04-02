@@ -8,6 +8,9 @@ def display_comparison(results, step, name_comparison):
     image_name = 'graphic-'
     i = 0
 
+    if not os.path.exists(path):
+        os.makedirs(path)
+
     plt.figure()
     plt.plot(step, [x[0] for x in results])
     plt.plot(step, [x[1] for x in results])
